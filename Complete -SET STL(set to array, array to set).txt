@@ -1,0 +1,81 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+//function for declaring/making set
+set<int> sets(set<int> s)
+{
+    s.insert(10);
+    s.insert(20);
+    s.insert(10);
+    s.insert(30);
+    s.insert(40);
+    s.insert(50);
+    s.insert(50);
+    return s;
+
+}
+
+//function for printing set
+int printset(set<int> s)
+{
+    set<int>::iterator it=s.begin();
+
+    for(it=s.begin(); it!=s.end(); ++it)
+    {
+        cout<<' '<<*it ;
+    }
+}
+
+
+//function for adding array to set
+set<int> add_array_to_set(set<int> s)
+{
+    int arr[] ={1,2,3,4,5,2,2,4,5};
+    int arr_size= sizeof(arr)/sizeof(arr[0]);
+
+    for(int i=0; i<arr_size ;++i)
+    {
+        s.insert(arr[i]);
+    }
+
+    return s;
+}
+
+
+//function for converting set to vector-
+vector<int> convert_set_to_vector(set<int> s)
+{
+    vector<int> v(s.size());  //must declare the size of set in vector for conversion
+    copy(s.begin(), s.end(), v.begin());
+    return v;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    set <int> s;
+
+    //declaring/making a set
+    s=sets(s);
+
+    //printing a set
+    printset(s);
+    cout<<endl;
+
+    //adding array element to set
+    s=add_array_to_set(s);
+    printset(s);
+    cout<<endl;
+
+    //set to vector conversion
+    vector<int> v;
+    v=convert_set_to_vector(s);
+    for(int i=0;i<v.size();++i)
+        cout<<v[i]<<" ";
+    cout<<endl;
+
+
+    return 0;
+}

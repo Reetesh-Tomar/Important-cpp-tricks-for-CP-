@@ -1,0 +1,35 @@
+Referance to hackerrank problem Big sort--
+
+#include <bits/stdc++.h>
+using namespace std;
+
+/*Why must std::sort compare function return false when arguments are equal?
+In std::sort you can supply a third argument which is the basis for how it sorts a list.
+If you want the first argument to come first, then you return true. ...
+if arg1 == arg2, compare function MUST return false.*/
+
+bool compare_fun(string left, string right)
+{
+    if(left.length()==right.length())
+        return left<right;
+    else
+        return left.length()<right.length();
+}
+int main()
+{
+    int n;
+    cin>>n;
+    vector <string> s;
+    for(int i=0;i<n;++i)
+    {
+        string temp;
+        cin>>temp;
+        s.push_back(temp);
+    }
+    sort(s.begin(),s.end(),compare_fun);
+
+    for(int i=0;i<n;++i)
+    {
+        cout<<s[i]<<endl;
+    }
+}

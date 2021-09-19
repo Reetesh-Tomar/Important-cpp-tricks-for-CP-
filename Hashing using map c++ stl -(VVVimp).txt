@@ -1,0 +1,14 @@
+// Here we are doing hashing using map i.e finding occurrence of a  char in string
+//CODE--
+
+map<char, int> A;
+string s = "reetesh tomar";
+
+for(int x: s)                      // same as-- for x in l  (in PYTHON), where l is list  
+{
+    A[x]++;                   //increament ++ where key value(i.e char in data type) is a element of string s
+} 
+
+cout<<A['e']<<endl;    //print 3
+cout<<A['r']<<endl;    //print 1
+cout<<A['z']<<ednl;    //print 0

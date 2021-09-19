@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define beastslayer ios_base::sync_with_stdio(false);cin.tie(NULL);
+#define ll long long
+
+int main()
+{
+    beastslayer;
+
+    int t=1;
+    cin>>t;
+    while(t--)
+    {
+       int a,b;
+       cin>>a>>b;
+       cout<<a*b/__gcd(a,b)<<endl;
+
+    }
+    return 0;
+}
+

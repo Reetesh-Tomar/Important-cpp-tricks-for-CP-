@@ -1,0 +1,17 @@
+string ns="";
+	    bool p=true;
+	    for(int i=0;i<S.length();++i)
+	    {
+	        if(S[i]==' ')
+	        {
+	            p=true;
+	        }
+	        else if(p==true )
+	        {
+	        
+	            ns+=S[i];
+	            p=false;
+	        }
+	    }
+	    return ns;
+	    

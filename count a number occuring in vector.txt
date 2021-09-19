@@ -1,0 +1,7 @@
+using count() function--
+
+for example:
+
+
+vector <int> arr={0,0,21,4,50,0};
+int zero=count(arr.begin(), arr.end(),0);

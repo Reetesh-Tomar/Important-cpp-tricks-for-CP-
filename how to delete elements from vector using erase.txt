@@ -1,0 +1,8 @@
+use "erase" function and iterators (for giving range) to delete elements from vector in a particular given range----
+
+
+for example:
+
+vector<int> arr={0,9,4,0,7};
+ vector<int>::iterator it1= arr.begin();
+ arr.erase(it1+arr.size()/2, it1+arr.size());

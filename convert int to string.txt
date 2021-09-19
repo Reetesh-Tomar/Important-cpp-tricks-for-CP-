@@ -1,0 +1,6 @@
+using "to_string()" function--
+
+for example:
+
+int  n=10349;
+string s= to_string(n);

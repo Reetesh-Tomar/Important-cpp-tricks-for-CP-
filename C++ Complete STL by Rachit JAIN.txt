@@ -1,0 +1,181 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+//comparator function for  printing vector in reverse order
+bool f(int x, int y)
+{
+    return x>y;
+}
+
+void vectordemo()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    //vectors
+    std::vector<int> v={11,4,5,2};
+    sort(v.begin(), v.end());    // O(NlogN)
+
+    //O(logN)
+    bool present = binary_search(v.begin(), v.end(),4); //true
+    present = binary_search(v.begin(), v.end(), 1); //false
+
+    v.push_back(100);
+    v.push_back(100);
+    v.push_back(100);
+    v.push_back(100);
+    v.push_back(120);
+
+    //vector<int>::iterator it = lower_bound(v.begin(), v.end(),100); //>=
+    auto it = lower_bound(v.begin(), v.end(),100);   //same as upper line
+    //vector<int>::iterator it1 = upper_bound(v.begin(), v.end(), 100); //>
+    auto it1 = upper_bound(v.begin(), v.end(), 100);  //same as upper line
+    cout<< *it << " " << *it1 <<endl;
+    cout<< it1-it<<endl;
+
+    //reverse sort
+    sort(v.begin(), v.end(), f);
+
+    //vector<int>::iterator it2;
+    //auto it2;  //same as upper line
+
+    /*for(it2= v.begin(); it2!=v.end(); it2++)
+        cout<< *it2 <<" ";
+    cout<<endl;*/
+
+    //Another method to print each element of vector (works same as upper code of printing)
+    for(int x : v)
+        cout<<x<<" ";
+    cout<<endl;
+
+    for(int &x : v)   //iterate by reference (now every change in x in the loop will effect on all elements of vector)
+    {
+        x++;          //add 1 to every element of vector v
+        cout<< x<< " ";
+    }
+
+}
+
+void setdemo()
+{
+    //sets do inserting elements and sorting them in order side by side in just --O(logN) time
+    //this is where sets become  more efficient than vector
+    set<int> s;
+    s.insert(1);
+    s.insert(2);
+    s.insert(-1);
+    s.insert(-10);
+
+    for(int x : s)       //same as for i in l , (l=list) in python
+        cout<< x <<" ";
+    cout<<endl;
+
+    auto it = s.find(-1);  //return false if it==s.end()
+
+    if(it == s.end())
+    {
+        cout<<" not present\n";
+    }
+    else{
+        cout<< "present\n";
+        cout<< *it<<endl;
+    }
+
+    auto it2 = s.upper_bound(-1);
+    auto it3 = s.upper_bound(0);
+    cout<<*it2<<" "<< *it3<<endl;
+
+    auto it4 = s.upper_bound(2);
+    if(it4 == s.end())
+        cout<<"OOPS not found something like that\n";
+}
+
+void mapdemo()
+{
+
+    //mapping takes --O(logN) time
+
+    map<int, int> A;
+    A[1]=100;
+    A[2] = -1;
+    A[3] = 200;
+    A[10000000032] =  1;
+
+    map<char, int> cnt;
+    string x = "reetesh tomar";
+
+    // Here we are doing hashing using map i.e finding occurrence of a  char in string
+    for(char c: x){
+        cnt[c]++;
+    }
+
+    cout<< cnt['e'] << " " <<cnt['z'] <<endl;
+}
+
+void pair_question()
+{
+    //Question is- we are given a number and some ranges like...
+    //[x,y]
+    // [10,20]
+    // [30,400]
+    // [401, 450]
+    // we have to give the interval in which this given number lies?
+    set<pair<int, int>> s;
+
+    //we are using pairs in set because we want to insert intervals
+     //as well as sort them simultaneously otherwise we have to make
+     // algorithms for these tasks, which will take time
+     // Now our whole process will be done in -- O(logN) time
+     //This is the power of c++ STL
+
+    s.insert({401, 450});
+    s.insert({ 10, 20});
+    s.insert({ 2, 3});
+    s.insert({ 30, 400});
+    //now our pairs will be formatted in the set as
+    //2, 3
+    //10, 20
+    //30, 400
+    //401, 450
+
+    int number=120;   // number whose interval has to be found
+
+    auto it = s.upper_bound({number, INT_MAX});   //here we are using int_max
+    // or infinity because wkt, upper_bound gives the index value next to or just
+    //greater than the number therefore we should take the number as pair first value
+    // and pair second value as infinity for the complex case
+    //like (number=10, and pair second value= 6), here our lower bound will give
+    //the interval according to pair second value as pair first value match with
+    // exact interval (10, 20) first value. So upperbound will give us the pair
+    // (10, 20) only but we need (30, 400) becoz we need to decrement the iterator
+    // for getting right  answer i.e = --it;
+
+    if(it==s.begin())  // condition for edge case
+    {
+        cout<<" the given number not lies in any interval...\n";
+        return;
+    }
+
+    it--;
+
+    //fetching the pairs values from iterator it
+    pair<int,int> current =*it;
+
+    if(current.first <= number && number<current.second)
+        cout<<"YES its present" << current.first<<" "<<current.second<<endl;
+    else
+        cout<<"the given number not lies in any interval...\n";
+
+
+
+}
+
+
+int main()
+{
+    //vectordemo();
+    //setdemo();
+    //mapdemo();
+    pair_question();
+    return 0;
+}

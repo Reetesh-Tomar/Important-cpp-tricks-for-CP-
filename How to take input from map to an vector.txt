@@ -1,0 +1,14 @@
+/*
+map<int, int>mpp;
+    forr(i, 0, n) {
+        cin >> y;
+        mpp[y]++;
+    }
+vec_i v, v1;
+
+for (auto &vbn : mpp) {       //remember that & is dereference operator  to provide us the actual value which iterator in map gives
+    vbn.S *= x;
+    v.pb(vbn.S);
+    v1.pb(vbn.F);
+}
+*/
