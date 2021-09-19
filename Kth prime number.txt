@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+//To check whether a number is prime or not using Sieve of Eratosthenes 
+//Time complexity of SOE=O(nlog(log(n)))
+
+int N=1e7+5;
+bool sieve[10000005];
+
+vector<int> prime;
+
+void sieve_of_Ars(){
+	for(int i=2;i<N;++i){
+		sieve[i]=true;
+	}
+	
+	//run through every number and mark all its multiples as false
+	for(int i=2;i*i<N;++i){
+		for(int j=i*i;j<N;j+=i){
+			sieve[j]=false;
+		}
+	}
+	for(int i=2;i<N;++i){
+		if(sieve[i]==true){
+			prime.push_back(i);
+		}
+	}
+}
+
+signed main(){
+	
+	sieve_of_Ars();
+	int t; cin>>t;
+	while(t--){
+		int n; cin>>n;
+		int c=0;
+		
+		cout<<prime[n-1]<<endl;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
