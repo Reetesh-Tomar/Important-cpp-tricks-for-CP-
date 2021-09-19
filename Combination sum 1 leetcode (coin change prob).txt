@@ -1,0 +1,36 @@
+/*Problem statement-given  an array and a target sum, print all subsets of this array (repetition of particular element is allowed), whose sum is equal to given sum */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void fun(int arr[], int sum, vector<int> v, int ind, int n){
+	if(ind==n){
+		if(sum==0){
+			for(int i=0;i< v.size();++i){
+				cout<<v[i]<<" ";
+			}
+			cout<<endl;
+		}
+		return;
+	}
+	//if we take that element
+	if(arr[ind]<=sum){
+		v.push_back(arr[ind]);
+		fun(arr, sum-arr[ind], v, ind, n);
+		v.pop_back();
+	}
+	//else we not take that element
+	fun(arr, sum, v, ind+1, n);
+}
+
+int main(){
+	int n; cin>>n;
+	int arr[n];
+	for(int i=0;i<n;++i){
+		cin>>arr[i];
+	}
+	int sum; cin>>sum;
+	vector<int> v;
+	int ind=0;
+	fun(arr,sum,v , ind, n);
+}

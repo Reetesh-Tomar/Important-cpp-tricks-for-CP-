@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+#define mod 1000000007
+#define pb push_back
+#define beastslayer ios_base::sync_with_stdio(false), cin.tie(NULL);
+
+//count subsequences of a array whose sum is divided by a given number k
+
+int l,r;
+int subseq(int arr[], int sum, int k, int ind, int n){
+    //base conditions
+    if(ind==n ){
+        if(sum%k==0 && sum!=0){           //sum!=0 condition for empty subsequence
+            return 1;
+        }
+        return 0;
+    }
+    //we take the current index element
+    sum+=arr[ind];
+    l=subseq(arr,sum, k,ind+1,n);
+    sum-=arr[ind];            //BACKTRACKING in recursion
+
+    //we do not take the current index element
+    r=subseq(arr,sum,k,ind+1,n);
+    return l+r;
+}
+
+signed main(){
+    beastslayer;
+    int n; cin>>n;  //size of string
+    int arr[n];
+    for(int i=0;i<n;++i) cin>>arr[i];
+    
+    int sum=0;
+    int k; cin>>k;   //the number through which the subsequence sum is divisible
+
+    int ans=subseq(arr,sum, k,0,n);
+    cout<<ans<<endl;
+
+    return 0;
+}

@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+#define mod 1000000007
+#define pb push_back
+#define beastslayer ios_base::sync_with_stdio(false), cin.tie(NULL);
+
+//print subsequences of a string using recursion
+
+//s="REETESH"
+void subseq(string &s, string &ns, int ind, int n){
+    //base conditions
+    if(ind==n && ns.size()!=0){
+        for(auto z: ns){
+            cout<<z<<" ";
+        }
+        cout<<endl;
+        return;
+    }
+    //we take the current index element
+    ns+=s[ind];
+    subseq(s,ns, ind+1,n);
+    ns.pop_back();            //BACKTRACKING in recursion
+
+    //we do not take the current index element
+    subseq(s,ns,ind+1,n);
+}
+
+signed main(){
+    beastslayer;
+    int n; cin>>n;  //size of string
+    string s; cin>>s;
+    string ns="";
+    subseq(s,ns, 0,n);
+
+    return 0;
+}

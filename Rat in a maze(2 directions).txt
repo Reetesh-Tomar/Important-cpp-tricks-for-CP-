@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+//Rat in a maze using recursion
+//given a matrix, found number of ways we can reach from [0,0] to [n,m] in a n*m matrix if we can move in 2 directions-(DOWN, RIGHT)
+//Print all paths like a string for ex- DRRDD...
+//condition- we cannot get back to a particula position more than once in a single path
+
+void fun(int i, int j, int n, int  m, string ans, vector<vector<int>> &vis){
+	//Base condition
+	
+	if(i>=n || j>=m || vis[i][j]==1) return;
+	
+	if(i==n-1 && j==m-1){
+		cout<<ans<<endl;
+		return;
+	}
+	
+	vis[i][j]=1;
+	//Moving right
+	ans+='R';
+	fun(i, j+1, n, m, ans, vis);
+	ans.pop_back();
+	
+	//Moving down
+	ans+='D';
+	fun(i+1, j, n, m, ans, vis);
+	ans.pop_back();
+	vis[i][j]=0;
+}
+
+int main(){
+	int n,m;
+	cin>>n>>m;
+	
+	int mat[n][m];
+	vector<vector<int>> vis(n, vector<int>(m,0)); //2D array
+	for(int i=0;i<n;++i){
+		for(int j=0;j<m;++j){
+			cin>>mat[i][j];	
+		}
+	}
+	
+	fun(0,0,n,m, "", vis);
+	
+	return 0;
+}
